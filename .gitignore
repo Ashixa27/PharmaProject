@@ -1,0 +1,30 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio
+.vs/
+.vscode/
+*.sln.user
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Test Results
+TestResults/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Local environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db

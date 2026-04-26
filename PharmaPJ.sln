@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniPharmaSystem", "MiniPharmaSystem\MiniPharmaSystem.csproj", "{AD732BF8-4826-2B66-7B98-93EF7226670B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniPharmaSystem.test", "MiniPharmaSystem.test\MiniPharmaSystem.test.csproj", "{5AF689D5-8F49-B438-5D74-AB3F4955ACB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD732BF8-4826-2B66-7B98-93EF7226670B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD732BF8-4826-2B66-7B98-93EF7226670B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD732BF8-4826-2B66-7B98-93EF7226670B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD732BF8-4826-2B66-7B98-93EF7226670B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AF689D5-8F49-B438-5D74-AB3F4955ACB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF689D5-8F49-B438-5D74-AB3F4955ACB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF689D5-8F49-B438-5D74-AB3F4955ACB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AF689D5-8F49-B438-5D74-AB3F4955ACB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA383978-9C3A-4E6E-875D-CCE0D3E4877B}
+	EndGlobalSection
+EndGlobal
