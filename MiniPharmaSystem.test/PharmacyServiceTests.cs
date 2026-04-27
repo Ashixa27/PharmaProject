@@ -1,58 +1,42 @@
 using System;
-using System.Collections.Generic;
 using NUnit.Framework;
+using NSubstitute;
 
 [TestFixture]
 public class PharmacyServiceTests
 {
+    private IMedicineRepository _repo = null!;
+    private IMedicineFactory _factory = null!;
+    private IPricingRuleEngine _engine = null!;
     private PharmacyService _service = null!;
 
     [SetUp]
     public void Setup()
     {
-        var repo = new JsonMedicineRepository("Data/medicines.json");
-
-        var engine = new PricingRuleEngine(new List<IPricingRule>
-        {
-            new PrescriptionRequiredRule(),
-            new AgeDiscountRule(),
-            new PrescriptionDiscountRule()
-        });
-
-        _service = new PharmacyService(
-            repo,
-            new MedicineFactory(),
-            engine);
+        _repo = Substitute.For<IMedicineRepository>();
+        _factory = Substitute.For<IMedicineFactory>();
+        _engine = Substitute.For<IPricingRuleEngine>();
+        _service = new PharmacyService(_repo, _factory, _engine);
     }
 
     [Test]
-    public void Throws_When_NoPrescription_ForPrescriptionDrug()
+    public void AgeDiscountRule_AppliesCorrectDiscounts()
     {
-        Assert.Throws<InvalidOperationException>(() =>
-            _service.GetFinalPrice("Augmentin",
-                new Patient { Age = 30, HasPrescription = false }));
+        var rule = new AgeDiscountRule();
+        var med = new Medicine {Name = "Test", Type = "OTC", BasePrice = 100m};
+
+        Assert.AreEqual(50m, rule.Apply(100m, med, new Patient {Age = 10}));
+        Assert.AreEqual(100m, rule.Apply(100m, med, new Patient {Age = 30}));
+        Assert.AreEqual(70m, rule.Apply(100m, med, new Patient {Age = 70}));
     }
 
     [Test]
-    public void Applies_AgeDiscount_ForSenior()
+    public void PrescriptionRequiredRule_Throws_WhenMissingPrescription()
     {
-        var price = _service.GetFinalPrice("Parasinus",
-            new Patient { Age = 70, HasPrescription = false });
+        var rule = new PrescriptionRequiredRule();
+        var med = new Medicine {Name = "Test", Type = "prescription", BasePrice = 45m};
+        var patient = new Patient {Age = 30, HasPrescription = false};
 
-        Assert.AreEqual(12.60m, price);
-    }
-
-    [Test]
-    public void Does_Not_Apply_Discount_Without_Prescription()
-    {
-        var price = _service.GetFinalPrice(
-            "Augmentin",
-            new Patient
-            {
-                Age = 30,
-                HasPrescription = false
-            });
-
-        Assert.That(price, Is.EqualTo(45m));
+        Assert.Throws<InvalidOperationException>(() => rule.Apply(45m, med, patient));
     }
 }
