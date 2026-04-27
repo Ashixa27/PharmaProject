@@ -46,13 +46,13 @@ public class PharmacyServiceTests
     public void Does_Not_Apply_Discount_Without_Prescription()
     {
         var price = _service.GetFinalPrice(
-            "Coldrex",
+            "Augmentin",
             new Patient
             {
                 Age = 30,
                 HasPrescription = false
             });
 
-        Assert.That(price, Is.EqualTo(20m));
+        Assert.That(price, Is.EqualTo(45m));
     }
 }

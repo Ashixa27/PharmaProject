@@ -2,12 +2,12 @@ public class PharmacyService
 {
     private readonly IMedicineRepository _repo;
     private readonly IMedicineFactory _factory;
-    private readonly PricingRuleEngine _engine;
+    private readonly IPricingRuleEngine _engine;
 
     public PharmacyService(
         IMedicineRepository repo,
         IMedicineFactory factory,
-        PricingRuleEngine engine)
+        IPricingRuleEngine engine)
     {
         _repo = repo;
         _factory = factory;
